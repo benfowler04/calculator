@@ -43,7 +43,6 @@ buttons.forEach(button =>{
 function addToDisplay(number) {
     let displayNum = display.textContent
     if (newInput) {
-        console.log('newInput')
         newInput = false
         setDisplay(number)
     }
