@@ -11,7 +11,6 @@ buttons.forEach(button =>{
 
         if (/\d/.test(input)) {
             if (didEquals) {
-                newInput = true
                 setDisplay(input)
                 didEquals = false
             }
@@ -44,6 +43,7 @@ buttons.forEach(button =>{
 function addToDisplay(number) {
     let displayNum = display.textContent
     if (newInput) {
+        console.log('newInput')
         newInput = false
         setDisplay(number)
     }
