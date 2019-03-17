@@ -52,7 +52,7 @@ function addToDisplay(number) {
 function setDisplay(displayNum) {
     displayNum = displayNum.toString()
     if (displayNum.length > 9) {
-        displayNum = parseInt(displayNum, 10)
+        displayNum = parseFloat(displayNum)
         displayNum = displayNum.toExponential(9)
     }
     display.textContent = displayNum
