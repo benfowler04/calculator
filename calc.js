@@ -3,13 +3,21 @@ const display = document.querySelector('#display')
 let numberStored = ''
 let operatorStored = ''
 let newInput = false
+let didEquals = false
 
 buttons.forEach(button =>{
     button.addEventListener('click', function(){
         let input = this.textContent
 
         if (/\d/.test(input)) {
+            if (didEquals) {
+                newInput = true
+                setDisplay(input)
+                didEquals = false
+            }
+            else {
             addToDisplay(input)
+            }
         }
         else if (input == 'C') {
             clear()
@@ -23,6 +31,8 @@ buttons.forEach(button =>{
                 numberStored = operate(Number(numberStored), operatorStored, Number(display.textContent))
                 operatorStored = ''
                 setDisplay(numberStored)
+                numberStored = ''
+                didEquals = true
             }
         }
         else {
@@ -34,10 +44,10 @@ buttons.forEach(button =>{
 function addToDisplay(number) {
     let displayNum = display.textContent
     if (newInput) {
-        displayNum = 0
         newInput = false
+        setDisplay(number)
     }
-    if (displayNum == 0) {
+    else if (displayNum == 0) {
         setDisplay(number)
     }
     else {
@@ -73,6 +83,7 @@ function processOperator(operator) {
     }
     operatorStored = operator
     newInput = true
+    didEquals = false
 }
 
 function add (a, b) {
